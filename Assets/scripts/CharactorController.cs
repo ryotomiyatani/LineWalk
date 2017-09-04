@@ -47,15 +47,13 @@ public class CharactorController : MonoBehaviour {
 			ChangeDirection ();
 		}
 	}
-
-
 		
-
 	void ChangeDirection(){
 		//プレイヤーの向きを決める
 		transform.rotation = Quaternion.LookRotation(transform.position + 
 			(Vector3.right * Input.GetAxisRaw("Horizontal")) + 
 			(Vector3.forward * Input.GetAxisRaw("Vertical")) 
 			- transform.position);
+					
 	}
 }

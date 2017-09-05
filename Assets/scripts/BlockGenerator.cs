@@ -7,17 +7,23 @@ public class BlockGenerator : MonoBehaviour {
 
 	public GameObject Detonator;
 	public GameObject bombPos;
+	public Renderer ren; 
+	public Transform minGoalX, maxGoalX;
+	public Transform minGoalZ, maxGoalZ;
+
+	const int maxPosition = 9;
+
+	Vector3[] positions = new Vector3[maxPosition];
+
+
 
 	// Use this for initialization
 	void Start () {
-		Collider[] col = GetComponents<Collider>();
-//		col[1].Size = new Vector3 (5f, 0.3f, 0.3f);
-//		int i = 0;
-//		foreach(Collider slimCol in col){
-//			col[i++] = slimCol;
-//		}
-//		this.Detonator = (GameObject)Resources.Load ("Assets/Prefabs/Detonator-Base");
-//		Debug.Log (Detonator);
+
+		Debug.Log (ren.enabled);
+		Collider[] col = GetComponents<BoxCollider>();
+
+		Debug.Log (col[1]);
 	}
 	
 	// Update is called once per frame
@@ -32,6 +38,7 @@ public class BlockGenerator : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject.tag == "Block") {
+
 			Destroy (other.gameObject);
 		}
 		if(other.gameObject.tag =="player"){
@@ -46,11 +53,13 @@ public class BlockGenerator : MonoBehaviour {
 	}
 
 	void DestroyTime(){
-	//	col[1].Size = new Vector3 (5f, 0.3f, 0.3f);
-	//	Instantiate (Detonator, bombPos.transform.position, Quaternion.identity);
+//		gameObject.SendMessage ("Explode");
 		Destroy (gameObject);
 
+	}
 
+	void LineMax(){
+	//	NavMeshAgent.CalculatePath(Vector3 targetPosition, NavMeshPath path);
 	}
 }
 

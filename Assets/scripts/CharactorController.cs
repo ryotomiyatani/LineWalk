@@ -5,10 +5,20 @@ using UnityEngine;
 public class CharactorController : MonoBehaviour {
 	//アニメーションさせるコンポーネントを入れる
 	private Animator myAnimator;
-	//キャラクターのRigidbodyコンポーネントを入れる
+	//ナイトのRigidbodyコンポーネントを入れる
 	private Rigidbody  myRigidbody;
-	//キャラクターの移動速度
-	public float speed = 2.0f; 
+	//ナイトの移動速度
+	public float speed = 2.0f;
+	//ナイトのライフ
+	public int life = 3;
+	//動きを減退させる
+	private float coefficient = 0.0f;
+	//ゲーム終了の判定
+	private bool isEnd = false;
+
+	int count = 0;
+	bool isHit = false;
+
 
 	UnityEngine.AI.NavMeshAgent agent;
 
@@ -46,6 +56,28 @@ public class CharactorController : MonoBehaviour {
 			myRigidbody.transform.position += new Vector3 (0.0f, 0.0f, -speed) * Time.deltaTime;
 			ChangeDirection ();
 		}
+		if (isHit && count == 0) {
+			// 当たったときの処理
+			count = 30; 
+			isHit = true;
+		}
+
+		if (count > 0) {
+			--count;
+			if (count <= 0) {
+				// 無敵時間の終わり
+				count = 0;
+
+				isHit = false;
+			}
+		}
+
+		if (this.isEnd) {
+//			this.transform.rotation.x *= this.coefficient;
+			this.speed *= this.coefficient;
+
+		}
+		Debug.Log (life);
 	}
 		
 	void ChangeDirection(){
@@ -56,4 +88,21 @@ public class CharactorController : MonoBehaviour {
 			- transform.position);
 					
 	}
-}
+
+	void OnTriggerEnter(Collider other){
+		//スライムに衝突した時
+
+			if (other.gameObject.tag == "Slim") {
+
+				if (life == 0) {
+					this.isEnd = true;
+				}
+			if (!isHit) {
+				isHit = true;
+			}
+				life -= 1;
+			Debug.Log (life);
+			}
+		}
+	}
+

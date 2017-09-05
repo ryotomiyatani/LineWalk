@@ -11,7 +11,6 @@ public class EnemyGenerator : MonoBehaviour {
 	//スライムの種類
 	public List<GameObject> slimList = new List<GameObject>(); 
 
-	GameObject greenObj;
 
 	//スライムの最大個数
 	public int maxSlim = 3;

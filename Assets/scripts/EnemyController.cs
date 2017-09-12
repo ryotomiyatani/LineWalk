@@ -7,9 +7,10 @@ public class EnemyController : MonoBehaviour {
 	//当たった個数リストに格納
 	private List<GameObject> hitObjects = new  List<GameObject> ();
 	//スライム取得
-	public GameObject slim;
+	public int slim;
 	//スライムを減らすためのカウント
 	public static int reduceSlim = 0;
+
 
 
 	//スコアを表示するテキスト
@@ -42,6 +43,8 @@ public class EnemyController : MonoBehaviour {
 			reduceSlim += 1;
 			GameController.Instance.score += 10;
 			this.scoreText.GetComponent<Text> ().text = "Score " + GameController.Instance.score + "pt";
+
+
 		}
 	}
 

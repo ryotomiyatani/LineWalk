@@ -15,7 +15,9 @@ public class EnemyManager : MonoBehaviour {
 	//スライムの最大個数
 	public int maxSlim = 3;
 	//スライム数の初期化
-	int currentSlim = 0;	
+	int currentSlim = 0;
+
+	//int maxSlim = slim;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +36,7 @@ public class EnemyManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		Debug.Log (maxSlim);
 		currentSlim =  currentSlim - EnemyController.reduceSlim;
 		if (currentSlim < maxSlim) {
 			

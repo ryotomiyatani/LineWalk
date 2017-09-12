@@ -93,7 +93,7 @@ public class CharactorController : MonoBehaviour {
 		if (other.gameObject.tag == "Slim") {
 			DamageController ();
 		}
-		}
+	}
 
 	void OnTriggerEnter(Collider other){
 
@@ -113,7 +113,7 @@ public class CharactorController : MonoBehaviour {
 		if(life >= 0){
 			//ナイトのコライダーを外す
 			myCollider.enabled = false;
-//			lifePanel.UpdateLife (Life());
+			//			lifePanel.UpdateLife (Life());
 			Debug.Log (life);
 			Invoke("myColliderReturn", 2f);
 		}

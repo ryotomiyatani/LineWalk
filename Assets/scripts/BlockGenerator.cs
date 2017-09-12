@@ -18,7 +18,7 @@ public class BlockGenerator : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-//		bombPos = GameObject.Find ("Bomb");
+		//		bombPos = GameObject.Find ("Bomb");
 	}
 
 

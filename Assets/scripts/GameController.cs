@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour {
 
 		lifePanel.UpdateLife (Knight.Life ());
 
-		
-	}
+
+		}
 }
+

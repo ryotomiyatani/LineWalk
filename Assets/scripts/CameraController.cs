@@ -18,11 +18,11 @@ public class CameraController : MonoBehaviour {
 		differenceZ = charactorObj.transform.position.z - this.transform.position.z;
 		differenceX = charactorObj.transform.position.x - this.transform.position.x;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		//キャラクターの位置に合わせてカメラを移動
 		transform.position = new Vector3(this.charactorObj.transform.position.x-differenceX, this.transform.position.y, this.charactorObj.transform.position.z-differenceZ);
-		
+
 	}
 }

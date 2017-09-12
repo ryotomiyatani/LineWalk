@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour {
 	//当たった個数リストに格納
@@ -9,37 +10,44 @@ public class EnemyController : MonoBehaviour {
 	public GameObject slim;
 	//スライムを減らすためのカウント
 	public static int reduceSlim = 0;
+
+
+	//スコアを表示するテキスト
+	private GameObject scoreText;
+
+
 	// Use this for initialization
 	void Start () {
-//		Instantiate(slim, new Vector3(15, 0.5, -14.5));
-		
+		scoreText = GameObject.Find("ScoreText");
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	void FixedUpdate(){
 		if (hitObjects.Count >= 2) {
-			Destroy (gameObject);
-			reduceSlim += 1;
+
 		}
 
 		hitObjects.Clear();
 	}
 
-	void OnCollisionStay( Collision other )
+	void OnTriggerEnter( Collider other )
 	{
 		if(other.gameObject.tag == "Block"){
-		// 衝突しているオブジェクトをリストに登録する
-		hitObjects.Add(other.gameObject);
+			// 衝突しているオブジェクトをリストに登録する
+			Destroy (gameObject);
+			reduceSlim += 1;
+			GameController.Instance.score += 10;
+			this.scoreText.GetComponent<Text> ().text = "Score " + GameController.Instance.score + "pt";
 		}
 	}
 
-		Collider GetCollider(GameObject gameObject)
-		{
-			Collider collider = gameObject.GetComponent<Collider>();
-			return collider;
-		}
+//	Collider GetCollider(GameObject gameObject)
+//	{
+//		Collider collider = gameObject.GetComponent<Collider>();
+//		return collider;
+//	}
 }

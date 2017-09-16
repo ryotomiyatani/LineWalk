@@ -8,7 +8,7 @@ public class FT_DestroyParticleByDuration : MonoBehaviour {
 
 
 	void Start () {		
-		rootParticle = transform.FindChild ("root").gameObject.GetComponent<ParticleSystem>();
+		rootParticle = transform.Find ("root").gameObject.GetComponent<ParticleSystem>();
 		destroyTime = rootParticle.duration;
 		Destroy(gameObject, destroyTime);	
 	}

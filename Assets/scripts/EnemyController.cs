@@ -27,18 +27,18 @@ public class EnemyController : MonoBehaviour {
 
 	}
 
-	void FixedUpdate(){
-		if (hitObjects.Count >= 2) {
-
-		}
-
-		hitObjects.Clear();
-	}
+//	void FixedUpdate(){
+//		if (hitObjects.Count >= 2) {
+//
+//		}
+//
+//		hitObjects.Clear();
+//	}
 
 	void OnTriggerEnter( Collider other )
 	{
 		if(other.gameObject.tag == "Block"){
-			// 衝突しているオブジェクトをリストに登録する
+
 			Destroy (gameObject);
 			reduceSlim += 1;
 			GameController.Instance.score += 10;

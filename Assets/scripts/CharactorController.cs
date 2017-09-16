@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharactorController : MonoBehaviour {
 	//アニメーションさせるコンポーネントを入れる
@@ -21,6 +22,8 @@ public class CharactorController : MonoBehaviour {
 	//スコアを表示するテキスト
 	public GameObject scoreText;
 
+
+
 	int life = DefaultLife;
 
 	UnityEngine.AI.NavMeshAgent agent;
@@ -38,6 +41,7 @@ public class CharactorController : MonoBehaviour {
 		myCollider = GetComponent<Collider>();
 		//アニメーターコンポーネントを取得
 		myAnimator = GetComponent<Animator>();
+		GetComponent<Animator> ().SetTrigger ("idle");
 		//waitアニメーションを開始
 		myAnimator.SetFloat("Mot_Knight@Wait",1);
 		//Rigidbodyコンポーネントを取得
@@ -46,6 +50,7 @@ public class CharactorController : MonoBehaviour {
 		stateText = GameObject.Find("GameOver");
 		//シーン中のscoreTextオブジェクトを取得
 		scoreText = GameObject.Find("Score");
+
 
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
@@ -79,7 +84,7 @@ public class CharactorController : MonoBehaviour {
 	}
 
 	void ChangeDirection(){
-
+		GetComponent<Animator> ().SetTrigger ("RunTrigger");
 		//プレイヤーの向きを決める
 		transform.rotation = Quaternion.LookRotation(transform.position + 
 			(Vector3.right * Input.GetAxisRaw("Horizontal")) + 
@@ -113,13 +118,14 @@ public class CharactorController : MonoBehaviour {
 		if(life >= 0){
 			//ナイトのコライダーを外す
 			myCollider.enabled = false;
-			//			lifePanel.UpdateLife (Life());
-			Debug.Log (life);
 			Invoke("myColliderReturn", 2f);
 		}
 		if (life == 0) {
-			Time.timeScale = 0f;
+//			Time.timeScale = 0f;
+
 			this.stateText.GetComponent<Text> ().text = "Game Over";
+
+
 
 		}
 	}

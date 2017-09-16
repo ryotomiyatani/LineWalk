@@ -26,15 +26,7 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
 
 	}
-
-//	void FixedUpdate(){
-//		if (hitObjects.Count >= 2) {
-//
-//		}
-//
-//		hitObjects.Clear();
-//	}
-
+		
 	void OnTriggerEnter( Collider other )
 	{
 		if(other.gameObject.tag == "Block"){

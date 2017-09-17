@@ -101,7 +101,6 @@ public class CharactorController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-
 		if (other.gameObject.tag == "Block") {
 			DamageController ();
 		}
@@ -115,6 +114,7 @@ public class CharactorController : MonoBehaviour {
 	public void DamageController(){
 		//スライムと接触時ライフを1削る
 		life -= 1;
+		GetComponent<Animator> ().SetTrigger ("DamageTrigger");
 		if(life >= 0){
 			//ナイトのコライダーを外す
 			myCollider.enabled = false;

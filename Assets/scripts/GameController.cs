@@ -77,6 +77,11 @@ public class GameController : MonoBehaviour{
 			resultButton.SetActive (true);
 				Debug.Log(startButton);
 
+			if (PlayerPrefs.GetInt ("HighScore") < score) 
+			{
+				PlayerPrefs.SetInt ("HighScore", score);
+			}
+
 		}
 	}
 }

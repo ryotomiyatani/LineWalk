@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour{
+	
 
-	public readonly static GameController Instance = new GameController();
+//	public readonly static GameController Instance = new GameController();
 	//スコア
 	public int score = 0;
 		//爆弾生成個数
@@ -29,13 +30,24 @@ public class GameController : MonoBehaviour {
 	//結果画面のボタン
 	public GameObject resultButton;
 
+	static public GameController Instance ;
+	void Awake()
+	{
+		if (Instance == null) {
+			Instance = this;
+			DontDestroyOnLoad (gameObject);
+		} else {
+			Destroy (gameObject);
+
+		}
+	}
+
+
 	public void StartScene(){
-		Debug.Log ("b");
 		Application.LoadLevel ("StartScene");
 	}
 
 	public void ResultScene(){
-		Debug.Log ("a");
 		Application.LoadLevel ("ResultScene");
 	}
 
@@ -48,6 +60,7 @@ public class GameController : MonoBehaviour {
 		startButton.SetActive (false);
 		resultButton = GameObject.Find ("Canvas/ResultScene");
 		resultButton.SetActive (false);
+		Debug.Log (resultButton);
 		
 	}
 	
@@ -59,9 +72,12 @@ public class GameController : MonoBehaviour {
 
 		if (Knight.Life() == 0) {
 			Time.timeScale = 0f;
+			Debug.Log(startButton);
 			startButton.SetActive (true);
 			resultButton.SetActive (true);
-				}
+				Debug.Log(startButton);
+
+		}
 	}
 }
 

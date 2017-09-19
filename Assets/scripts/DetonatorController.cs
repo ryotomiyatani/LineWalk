@@ -19,13 +19,19 @@ public class DetonatorController : MonoBehaviour {
 	//爆弾生成可能個数
 	public GameObject bombCount;
 
+
+
 	// Use this for initialization
 	void Start () {
+//		controller = GetComponent<CharacterController>();
 		//シーン中のBombCountオブジェクトを取得
 		bombCount = GameObject.Find("BombCount");
 
 		//親オブジェクトのコライダーを取得
 		explosionRange = gameObject.GetComponent<SphereCollider>();
+
+
+
 		//子オブジェクトのコライダーを取得
 		bombPos = childBomb.GetComponent<SphereCollider> ();
 		StartCoroutine ("DestroyTime");
@@ -33,7 +39,7 @@ public class DetonatorController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 	//爆弾の処理
 		private IEnumerator DestroyTime(){
@@ -48,5 +54,7 @@ public class DetonatorController : MonoBehaviour {
 		this.bombCount.GetComponent<Text> ().text = "Bomb Count：" + GameController.Instance.bombCount;
 
 		}
+
+
 
 }

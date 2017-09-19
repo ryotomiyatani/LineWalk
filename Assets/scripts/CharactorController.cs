@@ -121,7 +121,6 @@ public class CharactorController : MonoBehaviour {
 			Invoke("myColliderReturn", 2f);
 		}
 		if (life == 0) {
-//			Time.timeScale = 0f;
 
 			this.stateText.GetComponent<Text> ().text = "Game Over";
 

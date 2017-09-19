@@ -12,14 +12,8 @@ public class EnemyController : MonoBehaviour {
 	public static int reduceSlim = 0;
 
 
-
-	//スコアを表示するテキスト
-	private GameObject scoreText;
-
-
 	// Use this for initialization
 	void Start () {
-		scoreText = GameObject.Find("ScoreText");
 	}
 
 	// Update is called once per frame
@@ -34,15 +28,8 @@ public class EnemyController : MonoBehaviour {
 			Destroy (gameObject);
 			reduceSlim += 1;
 			GameController.Instance.score += 10;
-			this.scoreText.GetComponent<Text> ().text = "Score " + GameController.Instance.score + "pt";
-
 
 		}
 	}
 
-//	Collider GetCollider(GameObject gameObject)
-//	{
-//		Collider collider = gameObject.GetComponent<Collider>();
-//		return collider;
-//	}
 }

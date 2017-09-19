@@ -13,6 +13,7 @@ public class SceanManeger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//ハイスコアを表示
+
 		highScoreLabel.text = "High Score：" + PlayerPrefs.GetInt("HighScore") + "pt";
 	}
 	

@@ -21,8 +21,8 @@ public class CharactorController : MonoBehaviour {
 	public GameObject stateText;
 	//スコアを表示するテキスト
 	public GameObject scoreText;
-
-
+	//ダメージ音を鳴らすサウンド
+	public AudioSource damageSE;
 
 	int life = DefaultLife;
 
@@ -50,7 +50,8 @@ public class CharactorController : MonoBehaviour {
 		stateText = GameObject.Find("GameOver");
 		//シーン中のscoreTextオブジェクトを取得
 		scoreText = GameObject.Find("Score");
-
+		//AudioSourceコンポーネントを取得
+		damageSE = GetComponent<AudioSource>();
 
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
@@ -81,6 +82,7 @@ public class CharactorController : MonoBehaviour {
 			ChangeDirection ();
 		}
 
+
 	}
 
 	void ChangeDirection(){
@@ -91,6 +93,7 @@ public class CharactorController : MonoBehaviour {
 			(Vector3.forward * Input.GetAxisRaw("Vertical")) 
 			- transform.position);
 
+//		footSE.PlayOneShot (footSE.clip);
 	}
 
 	void OnCollisionEnter(Collision other){
@@ -112,6 +115,7 @@ public class CharactorController : MonoBehaviour {
 	}
 
 	public void DamageController(){
+		damageSE.PlayOneShot (damageSE.clip);
 		//スライムと接触時ライフを1削る
 		life -= 1;
 		GetComponent<Animator> ().SetTrigger ("DamageTrigger");

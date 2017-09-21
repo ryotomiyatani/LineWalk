@@ -17,8 +17,13 @@ public class CoinController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "player") {
-			GameController.Instance.score += 50;
-			Destroy (gameObject);
+			GameController.Instance.score += 30;
+			gameObject.SetActive(false);
+			Invoke("myCoinActive", 10f);
 		}
+	}
+
+	public void myCoinActive(){
+		gameObject.SetActive (true);
 	}
 }

@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour{
 
 //	public readonly static GameController Instance = new GameController();
 	//スコア
-	public int score = 240;
+	public int score = 0;
 		//爆弾生成個数
 	public int bombCount = 5;
 	//ナイトのスクリプト
@@ -32,8 +32,7 @@ public class GameController : MonoBehaviour{
 	public Text highScoreLabel;
 	//スタート画面に戻るボタン
 	public GameObject startButton;
-	//結果画面のボタン
-	public GameObject resultButton;
+
 
 	//コイン生成リスト
 	public List<Vector3>coinPosition = new List<Vector3>();
@@ -57,20 +56,15 @@ public class GameController : MonoBehaviour{
 		Application.LoadLevel ("StartScene");
 	}
 
-	public void ResultScene(){
-		Destroy (gameObject);
-		Application.LoadLevel ("ResultScene");
-	}
+
 
 
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1f;
-		Debug.Log (Time.timeScale);
 		startButton = GameObject.Find ("Canvas/StartReturn");
 		startButton.SetActive (false);
-		resultButton = GameObject.Find ("Canvas/ResultScene");
-		resultButton.SetActive (false);
+
 		//ゲームオーバー時に表示するスコアを表示するためのテキスト
 		endScoreText = GameObject.Find("EndScoreLabel");
 
@@ -86,7 +80,6 @@ public class GameController : MonoBehaviour{
 
 		this.scoreText.GetComponent<Text> ().text = "Score " + score + "pt";
 
-		Debug.Log (score);
 		lifePanel.UpdateLife (Knight.Life ());
 		if (PlayerPrefs.GetInt ("HighScore") < score) 
 		{
@@ -99,7 +92,7 @@ public class GameController : MonoBehaviour{
 			this.endScoreText.GetComponent<Text> ().text = "Score：" + score + "pt";
 
 			startButton.SetActive (true);
-			resultButton.SetActive (true);
+
 
 		}
 	}

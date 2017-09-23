@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour{
 	static public GameController Instance ;
 	void Awake()
 	{
-		Debug.Log (score);
+
 		if (Instance == null) {
 			Instance = this;
 			DontDestroyOnLoad (gameObject);

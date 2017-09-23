@@ -16,7 +16,7 @@ public class EnemyManager : MonoBehaviour {
 	public int maxSlim = 3;
 	//スライム数の初期化
 	int currentSlim = 0;
-
+	//スライムの最大個数を増やすためのスコア基準
 	int slimCountMax = 500;
 
 

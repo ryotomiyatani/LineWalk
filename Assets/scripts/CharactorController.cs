@@ -23,6 +23,10 @@ public class CharactorController : MonoBehaviour {
 	public GameObject scoreText;
 	//ダメージ音を鳴らすサウンド
 	public AudioSource damageSE;
+	//コイン取得時のサウンド
+	public AudioSource coinGet;
+	//ダメージエフェクトの追加
+	public GameObject damageUI;
 
 	int life = DefaultLife;
 
@@ -51,10 +55,14 @@ public class CharactorController : MonoBehaviour {
 		//シーン中のscoreTextオブジェクトを取得
 		scoreText = GameObject.Find("Score");
 		//AudioSourceコンポーネントを取得
-		damageSE = GetComponent<AudioSource>();
+		AudioSource[] audioSources = GetComponents<AudioSource>();
+		//コインをゲットした時のSE
+		coinGet = audioSources[0];
+		//ダメージを受けた時のSE
+		damageSE = audioSources[1];
+
 
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-
 
 	}
 
@@ -107,6 +115,12 @@ public class CharactorController : MonoBehaviour {
 		if (other.gameObject.tag == "Block") {
 			DamageController ();
 		}
+
+		if (other.gameObject.tag == "Coin") {
+			GetComponent<ParticleSystem> ().Play ();
+			coinGet.PlayOneShot (coinGet.clip);
+		}
+			
 	}
 
 	public void myColliderReturn(){
@@ -115,6 +129,8 @@ public class CharactorController : MonoBehaviour {
 	}
 
 	public void DamageController(){
+		Debug.Log (gameObject.transform.position);
+		Instantiate (damageUI, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z),Quaternion.identity);
 		damageSE.PlayOneShot (damageSE.clip);
 		//スライムと接触時ライフを1削る
 		life -= 1;

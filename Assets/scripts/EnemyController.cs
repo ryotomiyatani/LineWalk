@@ -10,7 +10,8 @@ public class EnemyController : MonoBehaviour {
 	public int slim;
 	//スライムを減らすためのカウント
 	public static int reduceSlim = 0;
-
+	//ダメージエフェクトの追加
+	public GameObject damageUI;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,7 @@ public class EnemyController : MonoBehaviour {
 	void OnTriggerEnter( Collider other )
 	{
 		if(other.gameObject.tag == "Block"){
+			Instantiate (damageUI, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z),Quaternion.identity);
 
 			Destroy (gameObject);
 			reduceSlim += 1;

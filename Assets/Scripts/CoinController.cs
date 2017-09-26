@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class CoinController : MonoBehaviour {
 
+
+
 	// Use this for initialization
 	void Start () {
 		this.transform.Rotate (0, Random.Range(0, 360), 0);
+
+
 	}
 	
 	// Update is called once per frame
@@ -17,6 +21,7 @@ public class CoinController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "player") {
+
 			GameController.Instance.score += 30;
 			gameObject.SetActive(false);
 			Invoke("myCoinActive", 10f);

@@ -38,16 +38,30 @@ public class EnemyManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		Debug.Log (maxSlim);
-		Debug.Log (slimCountMax);
+
 		currentSlim =  currentSlim - EnemyController.reduceSlim;
 		if (currentSlim < maxSlim) {
-			
-			int positionNum = Random.Range (0, positionList.Count);
-			int slimNum = Random.Range (0, 4);
-			GameObject slim = Instantiate (slimList [slimNum]) as GameObject;
-			slim.transform.position = new Vector3 (positionList [positionNum].x, positionList [positionNum].y, positionList [positionNum].z);
 
+			int num = Random.Range (0, 10);
+			Debug.Log (num);
+			if (num <= 5) {
+				int positionNum = Random.Range (0, positionList.Count);
+				int slimNum = Random.Range (0, 1);
+				GameObject slim = Instantiate (slimList [slimNum]) as GameObject;
+				slim.transform.position = new Vector3 (positionList [positionNum].x, positionList [positionNum].y, positionList [positionNum].z);
+			} else if (6 <= num && num <= 8) {
+				int positionNum = Random.Range (0, positionList.Count);
+				int slimNum = 2;
+				GameObject slim = Instantiate (slimList [slimNum]) as GameObject;
+				slim.transform.position = new Vector3 (positionList [positionNum].x, positionList [positionNum].y, positionList [positionNum].z);
+			} else {
+				int positionNum = Random.Range (0, positionList.Count);
+				int slimNum = 3;
+				GameObject slim = Instantiate (slimList [slimNum]) as GameObject;
+				slim.transform.position = new Vector3 (positionList [positionNum].x, positionList [positionNum].y, positionList [positionNum].z);
+
+			}
+				
 			EnemyController.reduceSlim = 0;
 			currentSlim += 1;
 

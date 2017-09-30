@@ -101,7 +101,6 @@ public class CharactorController : MonoBehaviour {
 			(Vector3.forward * Input.GetAxisRaw("Vertical")) 
 			- transform.position);
 
-//		footSE.PlayOneShot (footSE.clip);
 	}
 
 	void OnCollisionEnter(Collision other){
